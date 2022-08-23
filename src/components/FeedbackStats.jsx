@@ -1,7 +1,11 @@
 import React from 'react'
+import { useContext } from 'react'
+import FeedbackContext from '../context/FeedbackContext'
 
-function FeedbackStats({feedback}) {
-    //Calc Average
+function FeedbackStats() {
+  const {feedback} = useContext(FeedbackContext)  
+    
+  //Calc Average
     let average = feedback.reduce((acc, cur) => {
       return acc + cur.rating  
     }, 0) / feedback.length //it takes in the a functiion with the current value and accumulator and the defaukt value = 0

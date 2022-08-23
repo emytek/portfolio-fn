@@ -1,15 +1,29 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Card from './shared/Card'
 import Button from './shared/Button'
 import RatingSelect from './RatingSelect'
+import { useContext } from 'react'
+import FeedbackContext from '../context/FeedbackContext'
 
-function FeedbackForm({handleAdd}) {
+function FeedbackForm() {
   //component level state
    const [ text, setText ] = useState('')
    const [ rating, setRating ] = useState(10)
    const [ btnDisabled, setBtnDisabled ] = useState(true)
    const [ message, setMessage ] = useState('')
+
+   const {addFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext) 
+   
+  //  whenever the state changes, there should be a side effect , this is done by the useEffect
+  useEffect(() => {
+    if(feedbackEdit.edit === true){
+      setBtnDisabled(false)
+      setText(feedbackEdit.item.text)
+      setRating(feedbackEdit.item.rating)
+    }
+  }, [feedbackEdit])
+
 
    const handleTextChange = (e) => {
      if(text === '') {
@@ -35,9 +49,13 @@ function FeedbackForm({handleAdd}) {
                rating
            }
 
-           handleAdd(newFeedback);
+          if(feedbackEdit.edit === true) {
+            updateFeedback(feedbackEdit.item.id, newFeedback)
+          } else {
+            addFeedback(newFeedback)
+          }
 
-           setText('')
+          setText('')
        }
    }
 
