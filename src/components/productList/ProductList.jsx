@@ -8,8 +8,8 @@ const ProductList = () => {
       <div className="pl-texts">
         <h1 className="pl-title">Create & inspire with Emmy Okalla</h1>
         <p className="pl-desc">
-         Stunning projects with high quality designs administered using modern web technologies 
-         and tools. <small>Below are some cool Tech projects I has worked on...</small> 
+         Stunning fullstack and frontend web development projects with high quality designs done using modern web technologies 
+         and tools. Below are some cool Tech projects I have worked on... 
         </p>
       </div>
       <div className="pl-list">
